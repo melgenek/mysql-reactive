@@ -1,0 +1,36 @@
+group 'mysql-reactive'
+version '1.0-SNAPSHOT'
+
+buildscript {
+	ext.kotlin_version = '1.1.0-beta-22'
+
+	repositories {
+		mavenCentral()
+		maven { url 'http://dl.bintray.com/kotlin/kotlin-eap-1.1' }
+	}
+	dependencies {
+		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'kotlin'
+
+repositories {
+	mavenCentral()
+	maven { url 'http://dl.bintray.com/kotlin/kotlin-eap-1.1' }
+}
+
+ext {
+	reactor_version = "3.0.4.RELEASE"
+}
+
+dependencies {
+	compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+	compile "mysql:mysql-connector-java:6.0.5"
+	compile "com.google.protobuf:protobuf-java:2.6.1"
+	compile "io.projectreactor:reactor-core:$reactor_version"
+
+	testCompile group: 'junit', name: 'junit', version: '4.12'
+	compile "io.projectreactor.addons:reactor-test:$reactor_version"
+}
